@@ -79,20 +79,23 @@ class matchesController extends Controller
         return redirect('closedmatches');
     }
 
-//    public function deleteScore(Request $req){
-//        $input = $req->input();
-//        $match = Match::where('id',$input['id'])->get();
-//        $match->scored = 0;
-//        $match->result1 = NULL;
-//        $match->result2 = NULL;
-////        $match->save();
-////
-////        $bets = Bet::where('match_id',$input['id'])->get();
-////        $bets->score = NULL;
-////        $bets->save();
-////
-////        return redirect('scoredmatches');
+    public function deleteScore(Request $req){
+        $input = $req->input();
+        $match = Match::where('id',$input['id'])->firstOrFail();
+        $match->scored = 0;
+        $match->result1 = NULL;
+        $match->result2 = NULL;
+        $match->save();
+
+        $bets = Bet::where('match_id',$input['id'])->get();
+        foreach($bets as $bet){
+            $bet['score'] = NULL;
+            $bet->save();
+        }
+
+
+        return redirect('scoredmatches');
 //        return $match;
-//    }
+    }
 
 }
