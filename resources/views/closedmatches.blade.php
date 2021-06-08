@@ -9,20 +9,16 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{route('home')}}" class="nav-link " aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="{{route('matches')}}" class="nav-link active ">Matches</a></li>
-                <li class="nav-item"><a href="{{route('showBets')}}" class="nav-link">My bets</a></li>
-                @if (Auth::user()->permission == 'admin')
-                    <li class="nav-item"><a href="{{route('showAdminPanel')}}" class="nav-link">Admin</a></li>
-                @endif
-                <li class="nav-item"><a href="{{route('scoreboard')}}" class="nav-link">Scoreboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="" class="nav-link " aria-current="page">Admin Panel</a></li>
+                <li class="nav-item"><a href="{{route('home')}}" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="{{route('closedMatches')}}" class="nav-link active">Closed Matches</a></li>
+                <li class="nav-item"><a href="{{route('scoredMatches')}}" class="nav-link ">Scored Matches</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Add Match</a></li>
             </ul>
         </header>
     </div>
 
-
-<table class="table">
+    <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -34,19 +30,19 @@
         </thead>
         <tbody>
         <?php foreach ($matches as $i => $match) { ?>
-        @csrf
         <tr>
-            <th scope="row"><?php echo $i +  1 ?></th>
+            <th scope="row"><?php echo $i + 1 ?></th>
             <td><?php echo $match['team1'] ?></td>
             <td><?php echo $match['team2'] ?></td>
             <td><?php echo $match['match_time'] ?></td>
             <td>
-                <a href="/bet?id=<?php echo $match['id'] ?>" class="btn btn-sm btn-outline-primary">BET</a>
+                <a href="/setResult?id=<?php echo $match['id'] ?>" class="btn btn-sm btn-outline-primary">Set result</a>
             </td>
         </tr>
         <?php } ?>
         </tbody>
-</table>
+    </table>
+
+
+
 @endsection
-
-

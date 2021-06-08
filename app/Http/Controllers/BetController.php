@@ -58,6 +58,18 @@ class BetController extends Controller
         $bet = json_decode(json_encode($bet), true);
         return view('editbetform')->with('bets',$bet);
         }
+    public function scoreboard(){
+        $scoreboard = DB::select('select b.user_id,u.name,sum(b.score) as score,count(*) as bet_count
+        from bets as b
+        join users as u
+        on b.user_id = u.id
+        group by b.user_id,u.name
+        order by score desc
+        ');
+        $scoreboard = json_decode(json_encode($scoreboard), true);
+        return view('scoreboard')->with('scores',$scoreboard);
+    }
+
 
 
 }

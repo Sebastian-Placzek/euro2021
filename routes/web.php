@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\matchesController;
 use App\Http\Controllers\BetController;
+use App\Http\Controllers\AdminPanelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,10 +27,20 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/matches', [App\Http\Controllers\matchesController::class, 'showAvailableMatches'])->name('matches');
+Route::get('/scoredmatches', [App\Http\Controllers\matchesController::class, 'showScoredMatches'])->name('scoredMatches');
 
 Route::get('/bet', [App\Http\Controllers\matchesController::class, 'bet'])->name('bet');
-Route::get('/editBet', [App\Http\Controllers\BetController::class, 'editBet'])->name('editBet');
 
+Route::get('/editBet', [App\Http\Controllers\BetController::class, 'editBet'])->name('editBet');
 Route::post('/addBet', [App\Http\Controllers\BetController::class, 'addBet'])->name('addBet');
 Route::post('/updateBet', [App\Http\Controllers\BetController::class, 'updateBet'])->name('updateBet');
 Route::get('/mybets', [App\Http\Controllers\BetController::class, 'showBets'])->name('showBets');
+Route::get('/scoreboard', [App\Http\Controllers\BetController::class, 'scoreboard'])->name('scoreboard');
+
+Route::get('/adminpanel',[App\Http\Controllers\AdminPanelController::class,'showAdminPanel'])->name('showAdminPanel');
+
+Route::get('/closedmatches', [App\Http\Controllers\matchesController::class, 'showClosedMatches'])->name('closedMatches');
+Route::get('/setResult', [App\Http\Controllers\matchesController::class, 'setResult'])->name('setResult');
+Route::post('/updateMatch', [App\Http\Controllers\matchesController::class, 'updateMatch'])->name('updateMatch');
+Route::get('/deleteScore', [App\Http\Controllers\matchesController::class, 'deleteScore'])->name('deleteScore');
+

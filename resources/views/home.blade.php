@@ -12,7 +12,10 @@
                 <li class="nav-item"><a href="{{route('home')}}" class="nav-link active" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="{{route('matches')}}" class="nav-link ">Matches</a></li>
                 <li class="nav-item"><a href="{{route('showBets')}}" class="nav-link">My bets</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                @if (Auth::user()->permission == 'admin')
+                    <li class="nav-item"><a href="{{route('showAdminPanel')}}" class="nav-link">Admin</a></li>
+                @endif
+                <li class="nav-item"><a href="{{route('scoreboard')}}" class="nav-link">Scoreboard</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
             </ul>
         </header>
