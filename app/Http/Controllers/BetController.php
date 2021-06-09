@@ -39,14 +39,23 @@ class BetController extends Controller
     }
 
 
-    public function showBets(){
+    public function showActiveBets(){
         $myBets = DB::table('bets')
             ->join('matches', 'bets.match_id', '=', 'matches.id')
             ->select('bets.*', 'matches.team1','matches.team2','matches.match_time')
-            ->where('bets.user_id', Auth::user()->id)
+            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','>',date("Y-m-d H:i:s"))
             ->get();
         $myBets = json_decode($myBets,true);
         return view('mybets')->with('myBets',$myBets);
+    }
+    public function showClosedBets(){
+        $myBets = DB::table('bets')
+            ->join('matches', 'bets.match_id', '=', 'matches.id')
+            ->select('bets.*', 'matches.team1','matches.team2','matches.match_time','matches.scored')
+            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','<',date("Y-m-d H:i:s"))
+            ->get();
+        $myBets = json_decode($myBets,true);
+        return view('closedbets')->with('myBets',$myBets);
     }
     public function editBet(Request $req){
         $input = $req->input();
@@ -71,6 +80,34 @@ class BetController extends Controller
         ');
         $scoreboard = json_decode(json_encode($scoreboard), true);
         return view('scoreboard')->with('scores',$scoreboard);
+    }
+
+    public function showUserBets(Request $req){
+        $input = $req->input();
+
+        $bets = DB::table('bets')
+            ->join('matches', 'bets.match_id', '=', 'matches.id')
+            ->select('bets.*', 'matches.team1','matches.team2','matches.match_time')
+            ->where('bets.user_id', $input['id'])
+            ->get();
+        $bets = json_decode($bets,true);
+
+        return view('userbets')->with('bets',$bets);
+
+    }
+
+    public function matchBets(Request $req){
+        $input = $req->input();
+        $input_id = $input['id'];
+        $bets = DB::select('select u.name,m.team1,m.team2,m.match_time,b.result1,b.result2,b.score
+        from bets as b
+        join users as u
+        on b.user_id = u.id
+        join matches as m
+        on m.id = b.match_id
+        where b.match_id = ? ', [$input['id']]);
+        $bets = json_decode(json_encode($bets), true);
+        return view('matchbets')->with('bets',$bets);
     }
 
 

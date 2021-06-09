@@ -31,11 +31,11 @@
     </div>
     <div class="form-group">
         <label>Result1</label>
-        <input type="text" name="result1" class="form-control" value="0">
+        <input type="text" name="result1" class="form-control" value="">
     </div>
     <div class="form-group">
         <label>Result2</label>
-        <input type="text" name="result2" class="form-control" value="0">
+        <input type="text" name="result2" class="form-control" value="">
     </div>
     <div class="form-group">
         <label>Time</label>

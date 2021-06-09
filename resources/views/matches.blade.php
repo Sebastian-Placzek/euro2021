@@ -11,12 +11,13 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="{{route('home')}}" class="nav-link " aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="{{route('matches')}}" class="nav-link active ">Matches</a></li>
-                <li class="nav-item"><a href="{{route('showBets')}}" class="nav-link">My bets</a></li>
+                <li class="nav-item"><a href="{{route('showBets')}}" class="nav-link">Active Bets</a></li>
+                <li class="nav-item"><a href="{{route('closedBets')}}" class="nav-link">Closed Bets</a></li>
+                <li class="nav-item"><a href="{{route('scoreboard')}}" class="nav-link">Scoreboard</a></li>
                 @if (Auth::user()->permission == 'admin')
                     <li class="nav-item"><a href="{{route('showAdminPanel')}}" class="nav-link">Admin</a></li>
                 @endif
-                <li class="nav-item"><a href="{{route('scoreboard')}}" class="nav-link">Scoreboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+
             </ul>
         </header>
     </div>
