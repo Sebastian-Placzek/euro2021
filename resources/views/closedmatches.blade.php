@@ -13,7 +13,7 @@
                 <li class="nav-item"><a href="{{route('home')}}" class="nav-link" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="{{route('closedMatches')}}" class="nav-link active">Closed Matches</a></li>
                 <li class="nav-item"><a href="{{route('scoredMatches')}}" class="nav-link ">Scored Matches</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Add Match</a></li>
+                <li class="nav-item"><a href="{{route('showAddMatch')}}" class="nav-link">Add Match</a></li>
             </ul>
         </header>
     </div>

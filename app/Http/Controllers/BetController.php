@@ -22,7 +22,7 @@ class BetController extends Controller
        $bet->result1 = $input['result1'];
        $bet->result2 = $input['result2'];
        $bet->save();
-       return redirect('home');
+       return redirect('mybets');
     }
 
 
@@ -63,6 +63,9 @@ class BetController extends Controller
         from bets as b
         join users as u
         on b.user_id = u.id
+        join matches as m
+        on m.id = b.match_id
+        where m.scored = 1
         group by b.user_id,u.name
         order by score desc
         ');

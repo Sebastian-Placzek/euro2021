@@ -92,10 +92,19 @@ class matchesController extends Controller
             $bet['score'] = NULL;
             $bet->save();
         }
-
-
         return redirect('scoredmatches');
-//        return $match;
+    }
+    public function showAddMatch(){
+        return view('addmatch');
+    }
+    public function addMatch(Request $req){
+        $input = $req->input();
+        $match = new Match();
+        $match->team1 = $input['team1'];
+        $match->team2 = $input['team2'];
+        $match->match_time = $input['match_time'];
+        $match->save();
+        return redirect('matches');
     }
 
 }

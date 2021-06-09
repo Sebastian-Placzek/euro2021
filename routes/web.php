@@ -43,4 +43,5 @@ Route::get('/closedmatches', [App\Http\Controllers\matchesController::class, 'sh
 Route::get('/setResult', [App\Http\Controllers\matchesController::class, 'setResult'])->name('setResult');
 Route::post('/updateMatch', [App\Http\Controllers\matchesController::class, 'updateMatch'])->name('updateMatch');
 Route::get('/deleteScore', [App\Http\Controllers\matchesController::class, 'deleteScore'])->name('deleteScore');
-
+Route::get('/showAddMatch', [App\Http\Controllers\matchesController::class, 'showAddMatch'])->name('showAddMatch');
+Route::post('/addMatch', [App\Http\Controllers\matchesController::class, 'addMatch'])->name('addMatch');
