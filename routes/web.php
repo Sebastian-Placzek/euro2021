@@ -18,11 +18,10 @@ use App\Http\Controllers\AdminPanelController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 
-Route::get('/hello', [HelloController::class,'show']);
 
 Auth::routes();
 

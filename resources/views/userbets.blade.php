@@ -25,7 +25,10 @@
     </div>
 
 
-    <table class="table">
+
+
+
+            <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -36,16 +39,17 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($bets as $i => $bet) { ?>
+        @foreach ($bets as $i => $bet)
         <tr>
-            <th scope="row"><?php echo $i + 1 ?></th>
-            <td><?php echo $bet['team1'] ?></td>
-            <td><?php echo $bet['team2'] ?></td>
-            <td><?php echo $bet['match_time'] ?></td>
-            <td><?php echo $bet['result1'] . ':' . $bet['result2'] ?></td>
+            <th scope="row">{{$i + 1}}</th>
+            <td>{{$bet['team1']}}</td>
+            <td>{{$bet['team2']}}</td>
+            <td>{{$bet['match_time']}}</td>
+            <td>{{$bet['result1'] . ':' . $bet['result2']}}</td>
         </tr>
-        <?php } ?>
+        @endforeach
         </tbody>
     </table>
+
 @endsection
 

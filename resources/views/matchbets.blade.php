@@ -24,28 +24,33 @@
     </div>
 
 
-    <table class="table">
+    @foreach ($bets as $i => $bet)
+        @if ($i==0)
+        <div class="container">
+            <div class="centered">
+                <h1>{{$bet['team1'] . ' - ' . $bet['team2'] . '  | ' . $bet['match_time']}}</h1>
+            </div>
+        </div>
+        <br>
+
+        <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">User</th>
-            <th scope="col">Match</th>
-            <th scope="col">Match Time</th>
             <th scope="col">Result</th>
             <th scope="col">Score</th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($bets as $i => $bet) { ?>
+        @endif
         <tr>
-            <th scope="row"><?php echo $i + 1 ?></th>
-            <td><?php echo $bet['name'] ?></td>
-            <td><?php echo $bet['team1'] . ' - ' . $bet['team2']  ?></td>
-            <td><?php echo $bet['match_time'] ?></td>
-            <td><?php echo $bet['result1'] . ':' . $bet['result2'] ?></td>
-            <td><?php echo $bet['score'] ?></td>
+            <th scope="row">{{$i + 1}}</th>
+            <td>{{$bet['name']}}</td>
+            <td>{{$bet['result1'] . ':' . $bet['result2']}}</td>
+            <td>{{$bet['score']}}</td>
         </tr>
-        <?php } ?>
+        @endforeach
         </tbody>
     </table>
 @endsection
