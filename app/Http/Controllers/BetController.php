@@ -54,7 +54,7 @@ class BetController extends Controller
         $myBets = DB::table('bets')
             ->join('matches', 'bets.match_id', '=', 'matches.id')
             ->select('bets.*', 'matches.team1','matches.team2','matches.match_time')
-            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','>',date("Y-m-d H:i:s",strtotime('2 hour')))
+            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','>',date("Y-m-d H:i:s"))
             ->get();
         $myBets = json_decode($myBets,true);
         return view('mybets')->with('myBets',$myBets);
@@ -63,7 +63,7 @@ class BetController extends Controller
         $myBets = DB::table('bets')
             ->join('matches', 'bets.match_id', '=', 'matches.id')
             ->select('bets.*', 'matches.team1','matches.team2','matches.match_time','matches.scored')
-            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','<',date("Y-m-d H:i:s",strtotime('2 hour')))
+            ->where('bets.user_id', Auth::user()->id)->where('matches.match_time','<',date("Y-m-d H:i:s"))
             ->get();
         $myBets = json_decode($myBets,true);
         return view('closedbets')->with('myBets',$myBets);
