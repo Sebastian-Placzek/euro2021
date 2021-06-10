@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('permission')->default('normal');
             $table->timestamps();
-            $table->string('status')->default('disabled')
+            $table->string('status')->default('disabled');
         });
     }
 
