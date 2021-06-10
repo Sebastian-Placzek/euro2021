@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Bet;
 use App\Models\Match;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class BetController extends Controller
 {
 
     public function addBet(Request $req){
+
+        $req->validate([
+            'result1' => ['required', 'integer'],
+            'result2' => ['required','integer']
+        ]);
        $input = $req->input();
        $bet = new Bet();
        $bet->user_id = Auth::user()->id;
@@ -27,6 +33,11 @@ class BetController extends Controller
 
 
     public function updateBet(Request $req){
+        $req->validate([
+            'result1' => ['required', 'integer'],
+            'result2' => ['required','integer']
+        ]);
+
         $update = $req->input();
         if ($update['match_time'] < date("Y-m-d H:i:s")) {
             $error = 'Its too late to change prediction of result';
