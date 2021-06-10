@@ -12,7 +12,7 @@ use App\Models\Bet;
 class matchesController extends Controller
 {
     public function showAvailableMatches(){
-        $matches = DB::select("Select * from matches where match_time > NOW(),
+        $matches = DB::select("Select * from matches where match_time > NOW()
         and id not in ((select match_id from bets where user_id = ? ))",array(Auth::user()->id));
         $matches = json_decode(json_encode($matches), true);
        return view('matches')->with('matches',$matches);
