@@ -15,13 +15,13 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->string('team1');
-            $table->string('team2');
-            $table->integer('result1');
-            $table->integer('result2');
-            $table->timestamp('match_time');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->string('team1')->default(NULL);
+            $table->string('team2')->default(NULL);
+            $table->integer('result1')->default(NULL);
+            $table->integer('result2')->default(NULL);
+            $table->timestamp('match_time')->default(NULL);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             $table->integer('scored')->default(0);
         });
 
