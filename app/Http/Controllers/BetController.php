@@ -18,8 +18,8 @@ class BetController extends Controller
     public function addBet(Request $req){
 
         $req->validate([
-            'result1' => ['required', 'integer','between: 1,100'],
-            'result2' => ['required','integer','between: 1,100']
+            'result1' => ['required', 'integer','between: 0,100'],
+            'result2' => ['required','integer','between: 0,100']
         ]);
        $input = $req->input();
        $bet = new Bet();
@@ -34,8 +34,8 @@ class BetController extends Controller
 
     public function updateBet(Request $req){
         $req->validate([
-            'result1' => ['required', 'integer','between: 1,100'],
-            'result2' => ['required','integer','between: 1,100']
+            'result1' => ['required', 'integer','between: 0,100'],
+            'result2' => ['required','integer','between: 0,100']
         ]);
 
         $update = $req->input();
